@@ -40,7 +40,7 @@ wx.api.jscode2session=https://api.weixin.qq.com/sns/jscode2session
  mvn spring-boot:run  -Dspring.config.location=/<your-path>/application.properties
 ```
 
-## Build a docker images
+## Build a docker image
 
 ```shell
 docker build -t jscode2session .
@@ -58,13 +58,13 @@ test
 curl -X POST http://localhost:3000/api/v1/wxlink -H "Content-Type: application/json"  --data '{"wxcode": "123124"}' -v
 ```
 
-## Get pre-built docker images
+## Get pre-built docker image
 
 ```shell
 docker pull congtaojiang/jscode2session:latest
 ``` 
 
-### Run pre-built docker images
+### Run pre-built docker image
 
 ```shell
 docker run --rm  -p3000:3000 congtaojiang/jscode2session:latest
