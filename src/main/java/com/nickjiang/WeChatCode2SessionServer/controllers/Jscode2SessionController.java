@@ -30,7 +30,7 @@ public class Jscode2SessionController {
     private RestTemplate restTemplate;
 
     @PostMapping(value = "/wxlink", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> linkWxAccount(@RequestBody JscodeInfo jscodeInfo) {
+    public ResponseEntity<String> linkWxAccount(@RequestBody JscodeInfo jscodeInfo) throws Exception {
         logger.info("Get js_code info: " + jscodeInfo.toString());
 
         restTemplate.getMessageConverters().add(new WxSessionInfoHttpMessageConverter());
@@ -52,7 +52,7 @@ public class Jscode2SessionController {
         if (result.getBody().contains("errcode")) {
             // handle error
             logger.error(result.getBody());
-            return ResponseEntity.internalServerError().body(result.getBody());
+            throw new Exception(result.getBody());
         }
 
         logger.info(result.getBody());
